@@ -17,16 +17,21 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+//MaterialApp: Widget utama untuk aplikasi Flutter. Ini mengonfigurasi aplikasi 
+//dengan beberapa opsi dan menyediakan navigasi untuk halaman-halaman.
 class _MyAppState extends State<MyApp> {
   var status = 0;
 
   @override
   Widget build(BuildContext context) {
+    //Scaffold: Mendefinisikan struktur dasar halaman aplikasi.
     return Scaffold(
+      //AppBar: Menampilkan bar navigasi di bagian atas aplikasi
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text("Switch List to Grid"),
         actions: [
+          //IconButton: Tombol ikon yang merespons ketika diklik.
           IconButton(
             icon: status == 0
                 ? const Icon(
@@ -46,9 +51,12 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
       body: status == 0
+      //ListView.builder: Menampilkan daftar item dengan panjang yang dinamis.
           ? ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
+                //GestureDetector: Mendeteksi berbagai jenis interaksi 
+                //pengguna, seperti ketukan, gesekan, atau tarikan.
                 return GestureDetector(
                   onTap: () {
                     // Navigate to Deskripsi screen with the corresponding data
@@ -59,6 +67,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                     );
                   },
+                  //Card: Mengatur tata letak dan penampilan bingkai konten. 
                   child: Card(
                     margin: const EdgeInsets.all(10),
                     clipBehavior: Clip.antiAlias,
@@ -77,6 +86,8 @@ class _MyAppState extends State<MyApp> {
                 );
               },
             )
+            //GridView.builder: Menampilkan daftar item dalam tata letak grid. 
+            //Ini membangun item secara dinamis berdasarkan indeksnya.
           : GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
